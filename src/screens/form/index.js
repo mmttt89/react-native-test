@@ -1,27 +1,34 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
-import CustomTextInput from "./Custom-TextInput";
+import EStyleSheet from "react-native-extended-stylesheet";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { View, Text, TouchableOpacity, Image } from "react-native"
 import { Icon } from "native-base";
+import Companylogo from "@Assets/images/company-Icon.png"
+import CustomTextInput from "./Custom-TextInput";
 
 export default class FormScreen extends React.Component {
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>
-                    {"لوگوی سازمان شما"}
-                </Text>
+                <View style={styles.imageContainer}>
+                    <Image
+                        style={{ width: wp("30%"), height: wp("30%") }}
+                        source={Companylogo}
+                    />
+                </View>
                 <View style={styles.form}>
                     <CustomTextInput
                         rowIcon={true}
-                        rowIconComponent={<Icon name='home' style={{ color: "#888a8f" }} />}
+                        rowIconComponent={<Icon name='home' style={styles.rowIconStyle} />}
                         placeholder={"پست الکترونیک یا شماره موبایل"}
                     />
                     <CustomTextInput
                         inputIcon={true}
-                        inputIconComponent={<Icon name='eye' style={{ color: "#888a8f" }} />}
+                        inputIconComponent={<Icon name='eye' style={styles.inputIconStyle} />}
+                        inputIconAction={() => alert("نمایش رمز عبور / عدم نمایش رمز عبور")}
                         rowIcon={true}
-                        rowIconComponent={<Icon name='key' style={{ color: "#888a8f" }} />}
+                        rowIconComponent={<Icon name='key' style={styles.rowIconStyle} />}
                         placeholder={"کلمه عبور خود را وارد کنید"}
                     />
                     <TouchableOpacity
@@ -45,40 +52,44 @@ export default class FormScreen extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: "#fff"
     },
-    header: {
-        fontFamily: "IRANSans_Normal",
-        fontSize: 25,
+    imageContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: "100%",
+        paddingVertical: hp("5%")
     },
     form: {
-        paddingHorizontal: 20,
+        paddingHorizontal: wp("3%"),
         width: "100%",
         justifyContent: 'center',
         alignItems: 'center',
     },
     loginBtn: {
-        backgroundColor: "#ef39af",
+        backgroundColor: "#E44949",
         width: "100%",
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 8,
         paddingVertical: 15,
-        marginTop: 30
+        marginTop: hp("2.5%")
     },
     loginBtnText: {
         fontFamily: "IRANSans_Normal",
+        fontSize: "8rem",
         color: "#fff",
     },
     newUser: {
-        paddingVertical: 40,
+        paddingVertical: hp("4%"),
         fontFamily: "IRANSans_Normal",
-        color: "#ef39af",
+        color: "#E44949",        
+        fontSize: "8rem"
     },
     divider: {
         backgroundColor: "#f0f0f0",
@@ -87,8 +98,17 @@ const styles = StyleSheet.create({
     },
     terms: {
         fontFamily: "IRANSans_Normal",
-        paddingVertical: 30,
+        paddingVertical: hp("2%"),
         textAlign: "center",
-        color: "#888a8f"
-    }
+        color: "#888a8f",        
+        fontSize: "6rem"
+    },
+    inputIconStyle: {
+        color: "#888a8f",        
+        fontSize: "14rem"
+    },
+    rowIconStyle: {
+        color: "#888a8f",        
+        fontSize: "14rem"
+    },
 })
