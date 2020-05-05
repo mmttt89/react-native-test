@@ -43,8 +43,30 @@ export default class FormScreen extends React.Component {
                         {"ساخت حساب کاربری جدید"}
                     </Text>
                     <View style={styles.divider} />
-                    <Text style={styles.terms}>
-                        {"با ورود یا ثبت نام در دیجی کالا شما شرایط و قوانین استفاده از سرویس های سایت دیجی کالا و قوانین حریم خصوصی آن را می پذیرید"}
+                    <Text style={{
+                        textAlign: "center",
+                        paddingVertical: hp("2%")
+                    }}>
+                        <Text style={styles.terms}>
+                            {"با ورود یا ثبت نام در دیجی کالا شما"}
+                        </Text>
+                        <Text
+                            onPress={() => alert("terms clicked")}
+                            style={[styles.terms, styles.textlink]}>
+                            {" شرایط و قوانین "}
+                        </Text>
+
+                        <Text style={styles.terms}>
+                            {"استفاده از سرویس های سایت دیجی کالا و "}
+                        </Text>
+                        <Text
+                            onPress={() => alert("privacy rules clicked")}
+                            style={[styles.terms, styles.textlink]}>
+                            {" قوانین حریم خصوصی "}
+                        </Text>
+                        <Text style={[styles.terms]}>
+                            {"آن را می پذیرید"}
+                        </Text>
                     </Text>
                 </View>
             </View>
@@ -88,7 +110,7 @@ const styles = EStyleSheet.create({
     newUser: {
         paddingVertical: hp("4%"),
         fontFamily: "IRANSans_Normal",
-        color: "#E44949",        
+        color: "#E44949",
         fontSize: "8rem"
     },
     divider: {
@@ -96,19 +118,28 @@ const styles = EStyleSheet.create({
         width: "100%",
         height: 1,
     },
+    termsContainer: {
+        flexDirection: "row-reverse",
+        flexGrow: 1,
+        paddingVertical: hp("2%"),
+    },
     terms: {
         fontFamily: "IRANSans_Normal",
-        paddingVertical: hp("2%"),
         textAlign: "center",
-        color: "#888a8f",        
-        fontSize: "6rem"
+        color: "#888a8f",
+        fontSize: "7rem"
+    },
+    textlink: {
+        color: "#38c4d1",
+        marginHorizontal: wp("0.5%"),
+        borderBottomWidth: 1
     },
     inputIconStyle: {
-        color: "#888a8f",        
+        color: "#888a8f",
         fontSize: "14rem"
     },
     rowIconStyle: {
-        color: "#888a8f",        
+        color: "#888a8f",
         fontSize: "14rem"
     },
 })
