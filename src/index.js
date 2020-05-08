@@ -1,18 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Charts from "@Screens/charts";
 import IntentTest from "@Screens/intents-tests";
-import FormScreen from "@Screens/form";
-import EditableScreen from "@Screens/editable";
+import LoginFormScreen from "@Screens/login-form";
+import EditableFormScreen from "@Screens/editable-form";
 
 export default class Root extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                {/* <IntentTest /> */}
                 {/* <Charts /> */}
-                {/* <IntentTest/> */}
-                {/* <FormScreen /> */}
-                <EditableScreen />
+                <LoginFormScreen />
+                {/* <EditableFormScreen /> */}
             </View>
         )
     }
