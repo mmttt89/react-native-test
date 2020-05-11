@@ -5662,6 +5662,11 @@ react-native-chart-kit@^5.1.1:
     paths-js "^0.4.10"
     point-in-polygon "^1.0.1"
 
+react-native-custom-actionsheet@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-custom-actionsheet/-/react-native-custom-actionsheet-0.1.0.tgz#1c91f4dcdbb33057acfbca53d0305cf2c92f6f01"
+  integrity sha512-cTEB7sovGYUG5JmcWMT3i+HvAqfrTPDsGXcBggosc8UzkpxvuemtL2IqzmAOYGvoK50ySKXTtsmh3KjciyYGQA==
+
 react-native-drawer@2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/react-native-drawer/-/react-native-drawer-2.5.1.tgz#08b9314184f48c724f1b467f8859797369798654"

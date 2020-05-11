@@ -9,9 +9,9 @@ export default class Root extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                {/* <IntentTest /> */}
+                <IntentTest />
                 {/* <Charts /> */}
-                <LoginFormScreen />
+                {/* <LoginFormScreen /> */}
                 {/* <EditableFormScreen /> */}
             </View>
         )
