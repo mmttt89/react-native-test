@@ -1,49 +1,62 @@
 import React from "react";
-import { View, Button, Text, Linking } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet'
 import EStyleSheet from "react-native-extended-stylesheet";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Icon } from "native-base";
+import { CustomModalize } from "./Modalize";
+import faker from 'faker';
+
 const MY_BOOK_PACKAGE = "ir.mservices.mybook";
 const FIXED_H = hp("5%");
 
 export default class IntentTest extends React.Component {
     state = {
-        selected: 1,
     }
 
     showActionSheet = () => this.actionSheet.show()
 
     getActionSheetRef = ref => (this.actionSheet = ref)
 
-    handlePress = index => this.setState({ selected: index }, () => console.log(">>>>>>", this.state.selected))
+    handlePress = index => {
+        switch (index) {
+            case 0: alert("Home Selected")
+                break;
+            case 1: alert("Observe Form Selected")
+                break;
+            case 2: alert("Alarm Selected")
+                break;
+            case 3: alert("Settings Selected")
+                break;
+            case 4: alert("Camera Selected")
+                break;
+            default:
+                break;
+        }
+    }
 
-    launchUrl = () => {
-        let url = `http://myket.ir/app/${MY_BOOK_PACKAGE}`;
-        Linking.canOpenURL(url)
-            .then((supported) => {
-                if (!supported) {
-                    console.log("Can't handle url: " + url);
-                } else {
-                    console.log("url opened");
-                    return Linking.openURL(url);
-                }
-            })
-            .catch((err) => console.error('An error occurred', err));
+    onOpen = () => this.modalizeRef.current?.open();
+
+    renderItem = (item) => (
+        <View>
+            <Text>{item.heading}</Text>
+        </View>
+    );
+    getData = () => {
+        Array(50)
+            .fill(0)
+            .map(_ => ({
+                name: faker.name.findName(),
+                email: faker.internet.email(),
+            }));
     }
 
     render() {
-        const { selected } = this.state;
-
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: "blue" }}>
-                <Text>Intent Tests</Text>
-                <Button
-                    onPress={() => this.launchUrl()}
-                    title="First Intent" />
-                <View style={{ marginTop: 20 }}>
-                    <Button title="show" onPress={this.showActionSheet}></Button>
-                </View>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity onPress={this.showActionSheet}>
+                    <Text>Show Action Sheet</Text>
+                </TouchableOpacity>
                 <ActionSheet
                     ref={this.getActionSheetRef}
                     title={<View style={styles.titleContainer}>
@@ -56,42 +69,42 @@ export default class IntentTest extends React.Component {
                     options={[
                         {
                             component: <View style={styles.optionContainer}>
-                                <Icon type="FontAwesome" name="home" style={{ color: "#888a8f" }} />
+                                {/* <Icon name="home" style={{ color: "#888a8f" }} /> */}
                                 <Text style={styles.optionText}>خانه</Text>
                             </View>,
                             height: FIXED_H,
                         },
                         {
                             component: <View style={styles.optionContainer}>
-                                <Icon name="eye" style={{ color: "#888a8f" }} />
+                                {/* <Icon name="eye" style={{ color: "#888a8f" }} /> */}
                                 <Text style={styles.optionText}>مشاهده فرم</Text>
                             </View>,
                             height: FIXED_H,
                         },
                         {
                             component: <View style={styles.optionContainer}>
-                                <Icon name="alarm" style={{ color: "#888a8f" }} />
+                                {/* <Icon name="alarm" style={{ color: "#888a8f" }} /> */}
                                 <Text style={styles.optionText}>آلارم</Text>
                             </View>,
                             height: FIXED_H,
                         },
                         {
                             component: <View style={styles.optionContainer}>
-                                <Icon name="settings" style={{ color: "#888a8f" }} />
+                                {/* <Icon name="settings" style={{ color: "#888a8f" }} /> */}
                                 <Text style={styles.optionText}>تنظیمات</Text>
                             </View>,
                             height: FIXED_H,
                         },
                         {
                             component: <View style={styles.optionContainer}>
-                                <Icon name="camera" style={{ color: "#888a8f" }} />
+                                {/* <Icon name="camera" style={{ color: "#888a8f" }} /> */}
                                 <Text style={styles.optionText}>دوربین</Text>
                             </View>,
                             height: FIXED_H,
                         },
                         {
                             component: <View style={styles.optionContainer}>
-                                <Icon name="close" style={{ color: "red" }} />
+                                {/* <Icon name="close" style={{ color: "red" }} /> */}
                                 <Text style={[styles.optionText, { color: "red" }]}>لغو</Text>
                             </View>,
                             height: FIXED_H,
@@ -100,6 +113,8 @@ export default class IntentTest extends React.Component {
                     cancelButtonIndex={9}
                     onPress={this.handlePress}
                 />
+                <View style={{ width: "100%", height: 3, backgroundColor: 'grey', marginVertical: 20 }} />
+                <CustomModalize />
             </View>
         )
     }
